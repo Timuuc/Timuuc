@@ -14,13 +14,12 @@ jobs:
 
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v3  # Updated to v3
+        uses: actions/checkout@v3  # Using Node.js 20
 
       - name: Generate Snake Animation
         uses: Platane/snk@master
-        id: generateSnake
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_user_name: Timuuc  # Ensure this matches your GitHub username
           svg_out_path: dist/github-contribution-grid-snake.svg
 
       - name: Commit and push the animation
@@ -32,7 +31,7 @@ jobs:
           git push
 
       - name: Upload the generated animation
-        uses: actions/upload-artifact@v3  # Updated to v3
+        uses: actions/upload-artifact@v3  # Using Node.js 20
         with:
           name: snake-animation
           path: dist/github-contribution-grid-snake.svg
