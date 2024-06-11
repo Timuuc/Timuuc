@@ -65,7 +65,8 @@ I'm a 27-year-old Junior Software Developer with a love for C, C++, and Python.
 ## ⚡ Fun fact: I enjoy solving Rubik's cubes and can solve one in under a minute!
 
 ## 🎉 Special Repo Visualization
-![Repos](https://github.com/Timuuc/Timuuc/blob/output/github-contribution-grid-snake.svg)
+![Repos](https://raw.githubusercontent.com/Timuuc/Timuuc/main/dist/github-contribution-grid-snake.svg)
+
 
 ## ✨ Sparkline
 ![Sparkline](https://stars.medv.io/Timuuc.svg)
