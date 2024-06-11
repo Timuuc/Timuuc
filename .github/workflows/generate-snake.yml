@@ -22,7 +22,7 @@ jobs:
           python-version: '3.x'  # Ensure Python 3.x is used
 
       - name: Generate Snake Animation
-        uses: Platane/snk@v2
+        uses: Platane/snk@v2.1.0  # Ensure this is the latest version
         with:
           github_user_name: Timuuc  # Ensure this matches your GitHub username
 
