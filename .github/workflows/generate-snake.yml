@@ -30,4 +30,8 @@ jobs:
           git commit -m "Generate snake animation"
           git push
 
-      - name: Upload the generated ani
+      - name: Upload the generated animation
+        uses: actions/upload-artifact@v3  # Updated to v3 for Node.js 20 support
+        with:
+          name: snake-animation
+          path: dist/github-contribution-grid-snake.svg
