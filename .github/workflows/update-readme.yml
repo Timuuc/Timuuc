@@ -11,12 +11,21 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  # Updated to v4 for Node.js 20 support
+
+      - name: Set up Python
+        uses: actions/setup-python@v4  # Updated to v4 for Node.js 20 support
+        with:
+          python-version: '3.x'  # Ensure Python 3.x is used
 
       - name: Get Latest Space News
         id: space-news
         run: |
-          curl -s https://api.spaceflightnewsapi.net/v3/articles?_limit=1 | jq -r '.[0] | "::set-output name=title::" + .title + "\n::set-output name=url::" + .url'
+          response=$(curl -s https://api.spaceflightnewsapi.net/v3/articles?_limit=1)
+          title=$(echo $response | jq -r '.[0].title')
+          url=$(echo $response | jq -r '.[0].url')
+          echo "title=$title" >> $GITHUB_ENV
+          echo "url=$url" >> $GITHUB_ENV
 
       - name: Update README
         id: update-readme
