@@ -1,0 +1,41 @@
+name: Update README with Latest Space News
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs every day at midnight UTC
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Get Latest Space News
+        id: space-news
+        run: |
+          curl -s https://api.spaceflightnewsapi.net/v3/articles?_limit=1 | jq -r '.[0] | "::set-output name=title::" + .title + "\n::set-output name=url::" + .url'
+
+      - name: Update README
+        id: update-readme
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const readmePath = 'README.md';
+            const readme = fs.readFileSync(readmePath, 'utf8');
+            const newReadme = readme.replace(
+              /<!-- LATEST_SPACENEWS -->[\s\S]*<!-- LATEST_SPACENEWS_END -->/,
+              `<!-- LATEST_SPACENEWS -->\n- [${process.env.title}](${process.env.url})\n<!-- LATEST_SPACENEWS_END -->`
+            );
+            fs.writeFileSync(readmePath, newReadme);
+            
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md
+          git commit -m "Update latest space news"
+          git push
