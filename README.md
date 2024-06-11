@@ -68,6 +68,7 @@ I'm a 27-year-old Junior Software Developer with a love for C, C++, and Python.
 ![Repos](https://raw.githubusercontent.com/Timuuc/Timuuc/main/dist/github-contribution-grid-snake.svg)
 
 
+
 ## ✨ Sparkline
 ![Sparkline](https://stars.medv.io/Timuuc.svg)
 
