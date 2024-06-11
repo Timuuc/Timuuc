@@ -17,7 +17,9 @@ jobs:
         uses: actions/checkout@v4  # Updated to v4 for Node.js 20 support
 
       - name: Set up Python
-        uses: actions/setup-python@v4  # Ensure Python is set up
+        uses: actions/setup-python@v4  # Updated to v4 for Node.js 20 support
+        with:
+          python-version: '3.x'  # Ensure Python 3.x is used
 
       - name: Generate Snake Animation
         uses: Platane/snk@v2
